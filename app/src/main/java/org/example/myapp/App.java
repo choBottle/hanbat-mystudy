@@ -1,7 +1,6 @@
 package org.example.myapp;
 
-import com.google.common.base.Joiner;
-import org.example.util.Utils;
+import java.util.Scanner;
 
 /**
  * 이 클래스는 한밭대학교 특강 실습 예제를 위한 첫 번째 클래스 입니다. <br>
@@ -15,8 +14,10 @@ public class App {
    * @param args 명령행 인자
    */
   public static void main(String[] args) {
-    Utils.printMessage("hello, world");
-    String message = Joiner.on(", ").join("hello", "world");
-    System.out.println(message);
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("이름? ");
+    String name = scanner.nextLine();
+    System.out.printf("안녕하세요 %s 님!\n", name);
+    scanner.close();
   }
 }
