@@ -1,24 +1,28 @@
 plugins {
-    id 'application'
+    id 'java'
+    id 'org.springframework.boot' version '3.5.4'
 }
+
+apply plugin: 'io.spring.dependency-management' // 스프링 부트의 버전에 맞춰 의존 라이브러리 버전을 관리하는 플러그인
 
 repositories {
     mavenCentral()// 의존 라이브러리를 다운로드 받을 중앙 저장소 서버의 주소를 지정
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
     testImplementation 'org.junit.jupiter:junit-jupiter:5.12.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
-}
-
-application {
-    mainClass = 'org.example.myapp.App'
 }
 
 jar {
@@ -29,6 +33,7 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks.named('run') {
-    standardInput = System.in // 표준 입력을 시스템 입력으로 설정
+tasks.withType(JavaExec) { //gradle 사용 후 파일 깨짐 발생시 넣어야 하는 property
+    systemProperty 'sun.stdout.encoding', 'UTF-8'
+    systemProperty 'sun.stderr.encoding', 'UTF-8'
 }
