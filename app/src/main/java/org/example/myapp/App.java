@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // 현재 클래스와 같은 패키지및 하위 패키지를 다 뒤져서 컴포넌트를 찾아 자동 생성하라는 설정
 @ComponentScan // => @Component, @RestController, @Controller, @Bean
+docker 사용해봄
  */
 @SpringBootApplication // = @SpringBootConfiguration + @SpringBootConfiguration + @ComponentScan
 public class App {
